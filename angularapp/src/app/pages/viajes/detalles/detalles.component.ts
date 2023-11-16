@@ -26,7 +26,6 @@ export class DetallesComponentViajes {
     this.route.queryParams.subscribe((params: any) => {
       this.viajeId = params['id'];
       // Aquí hacer lo que necesite con el ID 
-      console.log(this.viajeId, "llega????");
     });
 
     this.pageTitle = [{ label: 'Viajes', path: '/' }, { label: 'Detalles', path: '/', active: true }];
@@ -72,8 +71,6 @@ export class DetallesComponentViajes {
         const detallesObjeto = JSON.parse(this.viaje.detalles);
 
         this.viaje.detalles = detallesObjeto;
-
-        console.log(detallesObjeto, "timelineData");
       }, error => console.error(error));
   }
 }

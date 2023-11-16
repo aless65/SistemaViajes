@@ -27,7 +27,6 @@ export class CrearComponentViajes {
 
   constructor (
     private fb: FormBuilder,
-    // private service: Service,
     private route: ActivatedRoute,
     private router: Router,
     private http:HttpClient
@@ -42,7 +41,6 @@ export class CrearComponentViajes {
     // initialize form config
     this.validationGroup1 = this.fb.group({
       FechaYHora: ['', Validators.required],
-      // TotalKm: [0, Validators.required],
       Sucursal: [0, Validators.required],
       Transportista: [0, Validators.required],
       Colaboradores: [[], Validators.required],
@@ -75,7 +73,6 @@ export class CrearComponentViajes {
   }
 
   filtrarColaboradores(){
-    console.log(this.viaje.sucu_Id, "sucursal escogida");
     if(this.viaje.sucu_Id !== undefined){
       this.http.get('/ColaboradoresXSucursales/Listado?id=' + this.viaje.sucu_Id).subscribe((response: any) => {
         let optionsColaboradores = response.data.map((item: any) => ({
@@ -94,7 +91,6 @@ export class CrearComponentViajes {
           distancia: item.suco_DistanciaKm
         }));
   
-        console.log(this.colaboradoresTabla, "tabla??");
       }, error => console.error(error));
     }
   }
@@ -129,7 +125,6 @@ export class CrearComponentViajes {
   get form1() { return this.validationGroup1.controls; }
 
   validarYGuardar() {
-    console.log(this.viaje.detalles, "checando el array");
     
      if (this.validationGroup1.invalid || (this.viaje.viaj_TotalKm !== undefined && this.viaje.viaj_TotalKm > 100) ) {
       Swal.fire({
@@ -145,7 +140,6 @@ export class CrearComponentViajes {
         // Acción luego de cerrarse el toast
       });
       // El formulario tiene errores de validación, pues mostrar un mensaje de error o alguna cosa ombe... aquí
-      // console.log(this.usucrea);
       Object.keys(this.validationGroup1.controls).forEach(field => {
         const control = this.validationGroup1.get(field);
         if (control?.invalid) {
@@ -163,7 +157,6 @@ export class CrearComponentViajes {
   }
 
   Guardar(){
-    console.log(this.viaje.detalles, "before map");
     let detallesJSON;
     detallesJSON = {
       colaboradores: this.viaje.detalles.map((id: any) => {
@@ -171,7 +164,6 @@ export class CrearComponentViajes {
       })
     };
 
-    console.log(JSON.stringify(detallesJSON));
 
     // this.viaje.detalles = JSON.stringify(detallesJSON);
     const mockData = {
@@ -193,13 +185,8 @@ export class CrearComponentViajes {
 
     }
 
-    console.log(this.viaje);
-    console.log(mockData);
     this.http.post('/Viajes/Insertar', mockData)
     .subscribe((data: any) => {
-      console.log("GUARDAAA");
-     /* this.router.navigate([this.returnUrl]);*/
-      console.log(data.message);
 
       if(data.code == 409){
         Swal.fire({

@@ -73,8 +73,6 @@ export class ReporteComponent {
         .subscribe((data: any) => {
           this.viaje = data.data;
 
-          console.log(this.viaje);
-
           this.totalPago = this.viaje.reduce((sum: any, item: any) => sum + item.totalAPagar, 0);
           this.totalDistancia = this.viaje.reduce((sum: any, item: any) => sum + item.viaj_TotalKm, 0);
           
@@ -185,11 +183,6 @@ export class ReporteComponent {
                 },
               ],
             },
-            // {
-            //     width: 75,
-            //     qr: this.value,
-            //     margin: [0, 7, 0, 0],
-            // }
           ] as Column[],
           columnGap: 20,
         },

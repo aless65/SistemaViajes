@@ -25,7 +25,6 @@ export class LeftSidebarComponent implements OnInit{
 
   ngOnInit(): void {
     this.usuario = JSON.parse(this.usuarioString || '');
-    console.log(this.usuario);
     // const userString  = localStorage.getItem('user');
     if(this.usuario.usua_EsAdmin){
       this.usuario.role_Nombre = 'Administrador';

@@ -94,7 +94,6 @@ export class ColaboradoresComponent {
   _fetchData(): void {
     this.http.get('/Colaboradores/Listado').subscribe((result: any) => {
       this.colaboradores = result.data;
-      console.log(result);
     },
     (error: any) => {
           console.log(error);
@@ -162,8 +161,6 @@ export class ColaboradoresComponent {
   }
 
   Editar(colaborador: Colaboradores) {
-    console.log("si llegaaa");
-       localStorage.setItem("id", colaborador.cola_Id!.toString());
        this.router.navigate([this.returnUrl]); 
    }
 

@@ -69,7 +69,6 @@ export class LoginComponent {
             localStorage.setItem('user', JSON.stringify(data.data));
             this.router.navigateByUrl('/Inicio');
             this.loginForm.reset();
-            console.log("por kha?");
           } else {
             this.loading = false;
 

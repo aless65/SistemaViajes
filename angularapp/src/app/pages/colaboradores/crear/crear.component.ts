@@ -3,7 +3,6 @@ import { AbstractControl, FormArray, FormBuilder, FormGroup, Validators } from '
 import { BreadcrumbItem } from 'src/app/shared/page-title/page-title.model';
 import { Colaboradores } from '../../Models';
 import { ActivatedRoute, Router } from '@angular/router';
-// import { Service } from '../../Service/service.service';
 import { Select2Data } from 'ng-select2-component';
 import Swal from 'sweetalert2';
 import { HttpClient } from '@angular/common/http';
@@ -26,11 +25,9 @@ export class CrearComponentColaboradores {
   municipio: Select2Data = [];
   sucursal: Select2Data = [];
   isFechaInvalida: boolean = false;
-  // usucrea: number = this.user.usua_Id;
 
   constructor (
     private fb: FormBuilder,
-    // private service: Service,
     private route: ActivatedRoute,
     private router: Router,
     private http:HttpClient
@@ -70,9 +67,6 @@ export class CrearComponentColaboradores {
     control.removeAt(index);
   }
   
-  // onSaveForm() {
-  //   const formValue = this.sucursalesForm.value;
-  // }
 
   ngOnInit(): void {
     this.colaborador.cola_UsuaCreacion = this.user.usua_Id;
@@ -89,8 +83,6 @@ export class CrearComponentColaboradores {
       FechaNacimiento: ['', Validators.required],
       Sexo: ['', Validators.required],
       Sucursales: [''],
-      // UsuCrea: [this.usucrea, Validators.required],
-      // FechaCrea: [new Date(), Validators.required]
     });
 
     this.http.get('/Municipios/Listado').subscribe((response: any) => {
@@ -137,7 +129,6 @@ export class CrearComponentColaboradores {
   get form1() { return this.validationGroup1.controls; }
 
   validarYGuardar() {
-    console.log(JSON.stringify(this.sucursalesForm.value));
     this.isFechaInvalida = false;
     
      if (this.validationGroup1.invalid || this.sucursalesForm.invalid) {
@@ -193,13 +184,8 @@ export class CrearComponentColaboradores {
 
     }
 
-    console.log(this.colaborador);
-    console.log(mockData);
     this.http.post('/Colaboradores/Insertar', mockData)
     .subscribe((data: any) => {
-      console.log("GUARDAAA");
-     /* this.router.navigate([this.returnUrl]);*/
-      console.log(data.message);
 
       if(data.code == 409){
         Swal.fire({
