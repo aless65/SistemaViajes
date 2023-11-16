@@ -1,0 +1,35 @@
+<nav class="navbar navbar-expand navbar-dark bg-dark px-2">
+    <div class="navbar-nav">
+        <div class="side-nav-button p-2 me-3 text-light">
+            <i class="fe-menu me-1"></i>
+        </div>
+
+        <a class="navbar-brand px-4" [routerLink]="['/Inicio']">
+            <img src="assets/images/logo-light.png" alt="" height="30">
+        </a>
+    </div>
+
+    <!-- Opciones con ms-auto -->
+    <ul class="navbar-nav ms-auto">
+        <li class="dropdown notification-list topbar-dropdown" ngbDropdown>
+            <a ngbDropdownToggle class="nav-link nav-user me-0 waves-effect waves-light" id="profileMenuDropdown"
+                href="javascript:void(0)" aria-expanded="false">
+                <span class="account-user-avatar">
+                    <i class="bi bi-person-circle" height="50"></i>
+                </span>
+                <span class="pro-user-name ms-1">
+                    <i class="mdi mdi-chevron-down"></i>
+                </span>
+            </a>
+            <div ngbDropdownMenu aria-labelledby="profileMenuDropdown" class="dropdown-menu-end profile-dropdown">
+                
+
+                <!-- Cerrar sesión  -->
+                <a class="notify-item" ngbDropdownItem (click)="logout()">
+                    <i class="fe-log-out me-1"></i>
+                    <span style="cursor: pointer;">Cerrar sesión</span>
+                </a>
+            </div>
+        </li>
+    </ul>
+</nav>

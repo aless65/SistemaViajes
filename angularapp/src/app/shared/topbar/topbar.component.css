@@ -1,0 +1,14 @@
+.side-nav-button i {
+    font-size: 22px; /* Adjust the size as needed */
+  }
+
+nav {
+    height: 100%;
+}
+
+.side-nav-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}

@@ -1,0 +1,142 @@
+
+<app-page-title [breadcrumbItems]="pageTitle" ></app-page-title>
+
+<br>
+<div class="custom-card">
+        <div class="card">
+            <div class="card-body">  
+                <h5 class="text-uppercase bg-light p-2 mt-0 mb-3 text-center">Crear Registro de Viajes</h5>
+                    <form class="needs-validation" [formGroup]="validationGroup1" #validate1="ngForm">
+                    <div class="row">
+                      
+                      
+                      <div class="col-sm-6">
+                        <div class="mb-3">
+                          <label for="validationCustom04" class="form-label">Fecha y Hora</label> 
+                          <input type="datetime-local" class="form-control" id="validationCustom04" placeholder="Fecha" required [(ngModel)]="viaje.viaj_FechaYHora"
+                            formControlName="FechaYHora"
+                            [ngClass]="{ 'is-valid': validate1.submitted && form1['FechaYHora'].valid , 
+                                        'is-invalid': validate1.submitted && form1['FechaYHora'].invalid}"
+                            > 
+                          <div *ngIf="validate1.submitted && form1['FechaYHora'].valid" class="valid-feedback">
+                            ¡Completo!
+                          </div>
+                          <div *ngIf="validate1.submitted && form1['FechaYHora'].invalid" class="invalid-feedback">
+                            La fecha es requerida.
+                          </div>
+
+
+                          
+                        </div>
+                      </div>
+
+                      <div class="col-sm-6">
+                         <div class="mb-3">
+                           <label for="validationCustom05" class="form-label">Sucursal:</label>
+                           <select2 id="sucursal-values" (update)="filtrarColaboradores()" [(ngModel)]="viaje.sucu_Id" placeholder="Sucursal..." 
+                             formControlName="Sucursal" [minCountForSearch]="0" [data]="sucursal"
+                             [ngClass]="{ 'is-valid': validate1.submitted && form1['Sucursal'].valid , 'is-invalid': validate1.submitted && form1['Sucursal'].invalid }">
+                           </select2>
+                           <div *ngIf="validate1.submitted && form1['Sucursal'].valid" class="valid-feedback">
+                             ¡Completo!
+                           </div>
+                           <div *ngIf="validate1.submitted && form1['Sucursal'].invalid" class="invalid-feedback">
+                             La sucursal es requerida.
+                           </div>
+                         </div>
+                       </div>
+
+                       <div class="col-sm-6">
+                          <div class="mb-3">
+                            <label for="validationCustom05" class="form-label">Colaboradores:</label>
+                            <select2 id="colaboradores-values"  [(ngModel)]="viaje.detalles" (ngModelChange)="filtrarTabla()" placeholder="Colaboradores..." 
+                              formControlName="Colaboradores" [minCountForSearch]="0" [data]="colaboradores" multiple="true"
+                              [ngClass]="{ 'is-valid': validate1.submitted && form1['Colaboradores'].valid , 'is-invalid': validate1.submitted && form1['Colaboradores'].invalid }">
+                            </select2>
+                            <div *ngIf="validate1.submitted && form1['Colaboradores'].valid" class="valid-feedback">
+                              ¡Completo!
+                            </div>
+                            <div *ngIf="validate1.submitted && form1['Colaboradores'].invalid" class="invalid-feedback">
+                              Debe escoger al menos un colaborador.
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="col-sm-6">
+                           <div class="mb-3">
+                             <label for="validationCustom05" class="form-label">Transportista:</label>
+                             <select2 id="transportista-values"  [(ngModel)]="viaje.tran_Id" placeholder="Transportista..." 
+                               formControlName="Transportista" [minCountForSearch]="0" [data]="transportista"
+                               [ngClass]="{ 'is-valid': validate1.submitted && form1['Transportista'].valid , 'is-invalid': validate1.submitted && form1['Transportista'].invalid }">
+                             </select2>
+                             <div *ngIf="validate1.submitted && form1['Transportista'].valid" class="valid-feedback">
+                               ¡Completo!
+                             </div>
+                             <div *ngIf="validate1.submitted && form1['Transportista'].invalid" class="invalid-feedback">
+                               El transportista es requerido.
+                             </div>
+                           </div>
+                         </div>
+
+                        <div *ngIf="tablaFiltrada.length > 0" class="container">
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr class="text-uppercase table-dark">
+                                        <th scope="col">Colaborador</th>
+                                        <th scope="col">Distancia (km)</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <ng-container *ngFor="let item of tablaFiltrada">
+                                        <tr>
+                                            <td>
+                                                {{item.nombre}} 
+                                            </td>
+                                            <td>
+                                                {{item.distancia}} 
+                                            </td>
+                                        </tr>
+                                    </ng-container>
+                                </tbody>
+                            </table>    
+                        </div>
+
+                            
+                      <div class="container">
+                        <div class="text-end" [ngStyle]="{'color': viaje.viaj_TotalKm !== undefined && viaje.viaj_TotalKm > 100 ? 'red' : 'inherit'}">
+                            Distancia total: {{viaje.viaj_TotalKm}} kilómetros
+                        </div>
+                        
+                        
+                        <div class="button-container">
+                          <button class="btn btn-primary" style="margin-right: 10px;"  type="submit" (click)="validarYGuardar()">Guardar</button>
+                          <button class="btn btn-outline-secondary waves-effect waves-light" type="button" (click)="Volver()">Volver</button>
+                        </div>
+                      </div>
+                      
+
+                </div>
+                </form>
+     
+            </div> <!-- end card-body-->
+        </div> <!-- end card-->
+    </div>
+
+
+    
+<!-- Modal Delete -->
+<ng-template #deleteEmpleadoModal let-modal>
+  <div class="modal-header bg-light">
+      <h4 class="modal-title" id="myCenterModalLabel">Eliminar colaborador</h4>
+      <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('')"></button>
+  </div>
+  <div class="modal-body p-4">
+      <p>¿Realmente desea eliminar este empleado?</p>
+      <div class="text-end">
+          <button type="button"  class="btn btn-success waves-effect waves-light me-1">Eliminar</button>
+          <button type="button" class="btn btn-danger waves-effect waves-light"
+              (click)="modal.close('')">Cancelar</button>
+      </div>
+    
+  </div>
+</ng-template>

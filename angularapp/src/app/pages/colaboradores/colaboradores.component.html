@@ -1,0 +1,76 @@
+<!-- page title -->
+<app-page-title [breadcrumbItems]="pageTitle" title="
+"></app-page-title>
+
+
+
+
+<div class="row">
+    <div class="col-12">
+        <h4 class="text-uppercase custom-bg-color p-2 mt-0 mb-3 text-center">Colaboradores</h4>
+
+        <div class="card-content transparent-card">
+            <div class="card-body">
+                <div class="row justify-content-between">
+                    <div class="col-auto">
+                        <form class="d-flex flex-wrap align-items-center">
+                            <div class="me-3">
+                                
+                            </div>
+                         
+                        </form>
+                    </div>
+                    <div class="col-auto">
+                        <div class="text-lg-end my-1 my-lg-0">
+                        </div>
+                    </div><!-- end col-->
+                </div> <!-- end row -->
+            </div>
+        </div> <!-- end card -->
+    </div> <!-- end col-->
+</div> 
+
+ 
+<div class="row">
+    <div class="card">
+        <div class="card-body">
+            <div class="row justify-content-between mb-2">
+                <div class="col-12">
+                    <div>
+                        <!-- <button type="button" class="btn btn-success waves-effect waves-light mb-2 float-end"><i
+                                class="mdi mdi-cog"></i></button> -->
+
+                        <a [routerLink]="['/Colaboradores/Crear']" class="btn btn-pink waves-effect waves-light mb-2"> Agregar</a>
+                    </div>
+                </div><!-- end col-->
+            </div>
+            <!-- customer table -->
+            <app-advanced-table #advancedTable (handleTableLoad)="handleTableLoad($event)" [tableData]="colaboradores"
+                [columns]="columns" [pagination]="true" [isSearchable]="true" [hasRowSelection]="false"
+                (search)="searchData($event)" [isSortable]="false" [pageSizeOptions]="pageSizeOptions"
+                tableClasses="table-centered table-nowrap table-hover">
+            </app-advanced-table>
+   
+        </div> <!-- end card-body-->
+    </div> <!-- end card-->
+</div>
+<!-- end row -->
+
+
+<!-- Modal Delete -->
+<!-- <ng-template #deleteEmpleadoModal let-modal>
+    <div class="modal-header bg-light">
+        <h4 class="modal-title" id="myCenterModalLabel">Eliminar empleado</h4>
+        <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('')"></button>
+    </div>
+    <div class="modal-body p-4">
+        <p>¿Realmente desea eliminar este empleado?</p>
+        <div class="text-end">
+            <button type="button" (click)="deleteEmpleado()" class="btn btn-danger waves-effect waves-light me-1">Eliminar</button>
+            <button type="button" class="btn btn-outline-secondary waves-effect waves-light"
+                (click)="modal.close('')">Cancelar</button>
+        </div>
+      
+    </div>
+  </ng-template> -->
+  

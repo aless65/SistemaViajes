@@ -1,0 +1,26 @@
+<!-- ========== Left Sidebar Start ========== -->
+<div class="left-side-menu">
+    <div class="side-nav-content">
+        <br>
+        <div class="d-flex align-items-center justify-content-center">
+            <div class="dropdown profile-element text-center">
+                <img alt="image" class="rounded-circle" [src]="usuario?.usua_Imagen" style="width: 70px; height: 70px;" />
+                <div class="mt-2">
+                    <span class="block font-bold">{{usuario?.usua_Nombre}}</span>
+                    <br>
+                    <span class="text-muted text-xs">{{usuario?.role_Nombre}}<b class="caret"></b></span>
+                </div>
+            </div>
+        </div>
+        <br>
+        <ul class="nav-list ms-auto">
+            <li class="nav-list-item nav-link" *ngFor="let item of list">
+                <i class={{item.icon}}></i>
+                <span>
+                    <a routerLink={{item.url}}>{{item.name}}</a>
+                </span>
+                <br>
+            </li>
+        </ul>
+    </div>
+</div>

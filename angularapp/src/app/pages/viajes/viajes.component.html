@@ -1,0 +1,60 @@
+<!-- page title -->
+<app-page-title [breadcrumbItems]="pageTitle" title="
+"></app-page-title>
+
+
+
+
+<div class="row">
+    <div class="col-12">
+        <h4 class="text-uppercase custom-bg-color p-2 mt-0 mb-3 text-center">Viajes</h4>
+
+        <div class="card-content transparent-card">
+            <div class="card-body">
+                <div class="row justify-content-between">
+                    <div class="col-auto">
+                        <form class="d-flex flex-wrap align-items-center">
+                            <div class="me-3">
+                                
+                            </div>
+                         
+                        </form>
+                    </div>
+                    <div class="col-auto">
+                        <div class="text-lg-end my-1 my-lg-0">
+                        </div>
+                    </div><!-- end col-->
+                </div> <!-- end row -->
+            </div>
+        </div> <!-- end card -->
+    </div> <!-- end col-->
+</div> 
+
+ 
+<div class="row">
+    <div class="card">
+        <div class="card-body">
+            <div class="row justify-content-between mb-2">
+                <div class="col-12">
+                    <div>
+                        <!-- <button type="button" class="btn btn-success waves-effect waves-light mb-2 float-end"><i
+                                class="mdi mdi-cog"></i></button> -->
+
+                        <a [routerLink]="['/Viajes/Crear']" class="btn btn-pink waves-effect waves-light mb-2"> Agregar</a>
+                    </div>
+                </div><!-- end col-->
+            </div>
+            <!-- customer table -->
+            <app-advanced-table #advancedTable (handleTableLoad)="handleTableLoad($event)" [tableData]="viajes"
+                [columns]="columns" [pagination]="true" [isSearchable]="true" [hasRowSelection]="false"
+                (search)="searchData($event)" [isSortable]="false" [pageSizeOptions]="pageSizeOptions"
+                tableClasses="table-centered table-nowrap table-hover">
+            </app-advanced-table>
+   
+        </div> <!-- end card-body-->
+    </div> <!-- end card-->
+</div>
+<!-- end row -->
+
+
+  

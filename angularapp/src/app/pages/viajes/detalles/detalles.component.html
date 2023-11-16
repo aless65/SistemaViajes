@@ -1,0 +1,110 @@
+<p>details works!</p>
+<!-- page title -->
+<app-page-title [breadcrumbItems]="pageTitle" title=""></app-page-title>
+<div class="row">
+    <div class="col-12">
+        <h4 class="text-uppercase custom-bg-color p-2 mt-0 mb-3 text-center">Detalles</h4>
+
+        <div class="card-content transparent-card">
+            <div class="card-body">
+                <div class="row justify-content-between">
+                    <div class="col-auto">
+                        <form class="d-flex flex-wrap align-items-center">
+                            <label for="inputPassword2" class="visually-hidden">Buscar</label>
+                            <div class="me-3">
+                              
+                            </div>
+                        </form>
+                    </div>
+                    <div class="col-auto">
+                        <div class="text-lg-end my-1 my-lg-0">
+                            <a [routerLink]="['/Viajes']" class="btn btn-outline-secondary waves-effect waves-light mb-2">Volver</a>
+                        </div>
+                    </div><!-- end col-->
+                </div> <!-- end row -->
+            </div>
+        </div> <!-- end card -->
+    </div> <!-- end col-->
+</div>
+<!-- end row-->
+
+<div class="row">
+    <div class="col-12">
+        <div class="card card-bg-image">
+            <div class="card-body">
+                <div class="row" >
+                    <h4 class="mb-4 text-center"> Fecha y hora del viaje: <span class="text-muted me-2">{{ viaje.viaj_FechaYHora }}</span></h4>
+
+                    <div class="col-md-6 order-md-1 flex-column">
+                        <div>
+                            <p class="text-muted text-center"><i class="mdi mdi-checkbox-marked-circle-outline h6 text-primary me-2"></i>
+                                Sucursal: {{viaje.sucu_Nombre}}</p>
+                            <p class="text-muted text-center"><i class="mdi mdi-checkbox-marked-circle-outline h6 text-primary me-2"></i>
+                                Recorrido total: {{viaje.viaj_TotalKm}} kms</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6 order-md-2 flex-column">
+                        <div>
+                            <p class="text-muted text-center"><i class="mdi mdi-checkbox-marked-circle-outline h6 text-primary me-2"></i>
+                                Transportista: {{viaje.tran_NombreCompleto}}</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- end row -->
+               
+                <br>
+                <br>
+                    
+                <div class="row">
+                    <div class="col-md-1"></div>
+                    <div class="col-md-10">
+                        <table class="table table-bordered table-centered mb-0">
+                            <thead class="table-dark">
+                                <tr>
+                                    <th>Colaborador</th>
+                                    <th>Distancia</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <ng-container *ngFor="let item of viaje.detalles">
+                                    <tr>
+                                        <td>{{item.cola_NombreCompleto}}</td>
+                                        <td>{{item.suco_DistanciaKm}}</td>
+                                    </tr>
+                                </ng-container>
+                               
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <br>
+                <br>
+
+                <div class="table-responsive mt-4" style="margin-top: 20px;"> 
+                    <h4 class="text-uppercase custom-bg-color p-2 mt-0 mb-3 text-center">Auditoría</h4>                   
+                    <table class="table table-bordered table-centered mb-0">
+                        <thead class="table-light">
+                            <tr>
+                                <th>Usuario Creador</th>
+                                <th>Fecha Creación</th>
+                                <th>Usuario Modificador</th>
+                                <th>Fecha Modificación</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>{{viaje.usuarioCreacion}}</td>
+                                <td>{{viaje.viaj_FechaCreacion}}</td>
+                                <td>{{viaje.usuarioModificacion}}</td>
+                                <td>{{viaje.viaj_FechaModificacion}}</td>
+                            </tr>
+                           
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div> <!-- end card-->
+    </div> <!-- end col-->
+</div>
+<!-- end row-->

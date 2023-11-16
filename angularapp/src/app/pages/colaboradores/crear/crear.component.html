@@ -1,0 +1,221 @@
+
+<app-page-title [breadcrumbItems]="pageTitle" ></app-page-title>
+
+<br>
+<div class="custom-card">
+        <div class="card">
+            <div class="card-body">  
+                <h5 class="text-uppercase bg-light p-2 mt-0 mb-3 text-center">Crear Registro de Colaboradores</h5>
+                    <form class="needs-validation" [formGroup]="validationGroup1" #validate1="ngForm">
+                        <div class="row">
+                            <div class="col-sm-6">
+                      <div class="mb-3">
+                        <label for="validationCustom01" class="form-label">Nombres</label>
+                        <input type="text" class="form-control" id="validationCustom01" placeholder="Nombres"
+                        [(ngModel)] = "colaborador.cola_Nombres"  required  formControlName="Nombres"
+                            [ngClass]="{ 'is-valid': validate1.submitted && form1['Nombres'].valid , 'is-invalid': validate1.submitted && form1['Nombres'].invalid }">
+                        <div *ngIf="validate1.submitted && form1['Nombres'].valid" class="valid-feedback">
+                            ¡Completo!
+                        </div>
+
+                        <div *ngIf="validate1.submitted && form1['Nombres'].invalid" class="invalid-feedback">
+                            El nombre es requerido
+                        </div>
+                      </div>
+                     </div>
+
+                     <div class="col-sm-6">
+                    <div class="mb-3">
+                        <label for="validationCustom02" class="form-label">Apellidos</label>
+                        <input type="text" class="form-control" id="validationCustom02" placeholder="Apellidos"
+                        [(ngModel)] = "colaborador.cola_Apellidos"  required formControlName="Apellidos"
+                            [ngClass]="{ 'is-valid': validate1.submitted && form1['Apellidos'].valid , 'is-invalid': validate1.submitted && form1['Apellidos'].invalid }">
+                        <div *ngIf="validate1.submitted && form1['Apellidos'].valid" class="valid-feedback">
+                            ¡Completo!
+                        </div>
+
+                        <div *ngIf="validate1.submitted && form1['Apellidos'].invalid" class="invalid-feedback">
+                            El apellido es requerido.
+                        </div>
+                    </div>
+                    </div>
+
+                    <div class="col-sm-6">
+                    <div class="mb-3">
+                        <label for="validationIdentidad" class="form-label">Identidad</label>
+                        <div class="input-group">
+                          <input type="text" class="form-control" id="validationIdentidad" placeholder="0000000000000"
+                          aria-describedby="inputGroupPrepend" [(ngModel)]="colaborador.cola_Identidad" required formControlName="Identidad"
+                          [ngClass]="{ 'is-valid': validate1.submitted && form1['Identidad'].valid, 'is-invalid': validate1.submitted && form1['Identidad'].invalid }"
+                          maxlength="13">
+                   
+                            <div *ngIf="validate1.submitted && form1['Identidad'].valid" class="valid-feedback">
+                                ¡Completo!
+                            </div>
+
+                            <div *ngIf="validate1.submitted && form1['Identidad'].invalid" class="invalid-feedback">
+                               La identidad es requerida.
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+
+                    <div class="col-sm-6">
+                        <div class="mb-3">
+                          <label for="validationCustom03" class="form-label">Sexo</label>
+                          <div class="radio-group">
+                            <input type="radio" class="form-check-input" id="Sexo" placeholder="Sexo" required value="F" [(ngModel)]="colaborador.cola_Sexo"
+                              formControlName="Sexo"
+                              [ngClass]="{ 'is-valid': validate1.submitted && form1['Sexo'].valid , 'is-invalid': validate1.submitted && form1['Sexo'].invalid }"> Femenino
+                      
+                            <input type="radio" class="form-check-input" id="Sexo" placeholder="Sexo" value="M" required [(ngModel)]="colaborador.cola_Sexo"
+                              formControlName="Sexo"
+                              [ngClass]="{ 'is-valid': validate1.submitted && form1['Sexo'].valid , 'is-invalid': validate1.submitted && form1['Sexo'].invalid }"> Masculino
+                          </div>
+                          <div *ngIf="validate1.submitted && form1['Sexo'].valid" class="valid-feedback">
+                            ¡Completo!
+                          </div>
+                          <div *ngIf="validate1.submitted && form1['Sexo'].invalid" class="invalid-feedback">
+                            El campo sexo es requerido.
+                          </div>
+                        </div>
+                      </div>
+                      
+                      
+                      <div class="col-sm-6">
+                        <div class="mb-3">
+                          <label for="validationCustom04" class="form-label">Fecha de Nacimiento</label> 
+                          <input type="date" class="form-control" id="validationCustom04" placeholder="Fecha" required [(ngModel)]="colaborador.cola_FechaNacimiento"
+                            formControlName="FechaNacimiento"
+                            [ngClass]="{ 'is-valid': validate1.submitted && form1['FechaNacimiento'].valid , 
+                                        'is-invalid': validate1.submitted && form1['FechaNacimiento'].invalid || isFechaInvalida }"
+                            max="2005-12-31"> <!-- Establece la fecha máxima como "2004-12-31" -->
+                          <div *ngIf="validate1.submitted && form1['FechaNacimiento'].valid" class="valid-feedback">
+                            ¡Completo!
+                          </div>
+                          <div *ngIf="validate1.submitted && form1['FechaNacimiento'].invalid" class="invalid-feedback">
+                            La fecha de nacimiento es requerida.
+                          </div>
+
+
+                          
+                        </div>
+                      </div>
+                      
+
+                    <div class="col-sm-6">
+                        <div class="mb-3">
+                            <label for="validationCustom05" class="form-label">Dirección</label>
+                            <input type="text" class="form-control" id="validationCustom05" placeholder="Dirección" required [(ngModel)] = "colaborador.cola_Direccion"
+                                formControlName="Direccion"
+                                [ngClass]="{ 'is-valid': validate1.submitted && form1['Direccion'].valid , 'is-invalid': validate1.submitted && form1['Direccion'].invalid }">
+                            <div *ngIf="validate1.submitted && form1['Direccion'].valid" class="valid-feedback">
+                                ¡Completo!
+                            </div>
+
+                            <div *ngIf="validate1.submitted && form1['Direccion'].invalid" class="invalid-feedback">
+                                La dirección es requerida.
+                            </div>
+                        </div>
+                    </div>
+
+                     <div class="col-sm-6">
+                        <div class="mb-3">
+                          <label for="validationCustom05" class="form-label">Municipio:</label>
+                          <select2 id="municipio-values"  [(ngModel)]="colaborador.muni_Id" placeholder="Municipio..." 
+                            formControlName="Muni" [minCountForSearch]="0" [data]="municipio"
+                            [ngClass]="{ 'is-valid': validate1.submitted && form1['Muni'].valid , 'is-invalid': validate1.submitted && form1['Muni'].invalid }">
+                          </select2>
+                          <div *ngIf="validate1.submitted && form1['Muni'].valid" class="valid-feedback">
+                            ¡Completo!
+                          </div>
+                          <div *ngIf="validate1.submitted && form1['Muni'].invalid" class="invalid-feedback">
+                            El municipio es requerido.
+                          </div>
+                        </div>
+                      </div>
+                      
+                      <!--Asignación de sucursales-->
+                      <h5 class="text-uppercase bg-light p-2 mt-0 mb-3 text-center">Asignar Sucursales</h5>
+
+                      <div class="row">
+                        <div class="col-6"></div>
+                        <div class="col-6 text-end">
+                          <button type="button" class="btn btn-sm btn-success" (click)="addRow()">Agregar sucursal</button>
+                        </div>
+                      </div>
+                      <div class="pt-2">
+                        <form>
+                          <table class="table table-bordered">
+                            <thead>
+                              <tr class="text-uppercase table-dark">
+                                <th scope="col">Sucursal</th>
+                                <th scope="col">Distancia (km)</th>
+                                <th scope="col"></th>
+                              </tr>
+                            </thead>
+                            <tbody [formGroup]="sucursalesForm">
+                              <ng-container formArrayName="tableRows" *ngFor="let group of getFormControls.controls; let i=index">
+                                <tr [formGroupName]="i">
+                                  <td>
+                                    <select2 id="sucursales-values" placeholder="Sucursal..." 
+                                        formControlName="sucu_Id" [minCountForSearch]="0" [data]="sucursal">
+                                    </select2>
+                                    <div class="text-danger" *ngIf="getFormControls.controls[i].get('sucu_Id')?.touched">
+                                      <span *ngIf="getFormControls.controls[i].get('sucu_Id')?.errors?.['unique']">Requerido</span>
+                                      <span *ngIf="getFormControls.controls[i].get('sucu_Id')?.errors?.['required']">Requerido</span>
+                                    </div>
+                                  </td>
+                                  <td>
+                                    <input type="text" class="form-control" formControlName="suco_DistanciaKm" placeholder="Distancia">
+                                    <div class="text-danger" *ngIf="getFormControls.controls[i].get('suco_DistanciaKm')?.touched">
+                                      <span *ngIf="getFormControls.controls[i].get('suco_DistanciaKm')?.errors?.['required']">Requerido</span>
+                                      <span *ngIf="getFormControls.controls[i].get('suco_DistanciaKm')?.errors?.['min']">Debe ser más de 0</span>
+                                      <span *ngIf="getFormControls.controls[i].get('suco_DistanciaKm')?.errors?.['max']">Debe ser igual o menos de 50</span>
+                                    </div>
+                                  </td>
+                                  <td>
+                                    <button class="btn btn-danger" (click)="removeSucursal(i)">Eliminar</button>
+                                  </td>
+                                </tr>
+                              </ng-container>
+                            </tbody>
+                          </table>
+                        </form>
+                      </div>
+
+                      <!--End asignación sucursales-->
+                            
+                      <div class="container">
+                        <div class="button-container">
+                          <button class="btn btn-primary" style="margin-right: 10px;" [disabled]="sucursalesForm.invalid" type="submit" (click)="validarYGuardar()">Guardar</button>
+                          <button class="btn btn-outline-secondary waves-effect waves-light" type="button" (click)="Volver()">Volver</button>
+                        </div>
+                      </div>
+                      
+
+                </div>
+                </form>
+     
+            </div> <!-- end card-body-->
+        </div> <!-- end card-->
+    </div>
+
+
+    
+<!-- Modal Delete -->
+<ng-template #deleteEmpleadoModal let-modal>
+  <div class="modal-header bg-light">
+      <h4 class="modal-title" id="myCenterModalLabel">Eliminar colaborador</h4>
+      <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('')"></button>
+  </div>
+  <div class="modal-body p-4">
+      <p>¿Realmente desea eliminar este empleado?</p>
+      <div class="text-end">
+          <button type="button"  class="btn btn-success waves-effect waves-light me-1">Eliminar</button>
+          <button type="button" class="btn btn-danger waves-effect waves-light"
+              (click)="modal.close('')">Cancelar</button>
+      </div>
+    
+  </div>
+</ng-template>

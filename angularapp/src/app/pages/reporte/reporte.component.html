@@ -1,0 +1,64 @@
+<!-- page title -->
+<app-page-title [breadcrumbItems]="pageTitle" title="
+"></app-page-title>
+
+<br>
+
+<div class="custom-card">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="text-uppercase bg-light p-2 mt-0 mb-3 text-center">Reporte de viajes</h4>
+            <form class="needs-validation" [formGroup]="validationGroup" #validate="ngForm">
+                <div class="row">
+                    <div class="col-sm-4">
+                        <div class="mb-3">
+                            <label class="form-label">Transportista</label>
+                            <select2 id="transportista-values"  [(ngModel)]="tran_Id" placeholder="Transportista..." 
+                               formControlName="Transportista" [minCountForSearch]="0" [data]="transportista"
+                               [ngClass]="{ 'is-valid': validate.submitted && form['Transportista'].valid , 'is-invalid': validate.submitted && form['Transportista'].invalid }">
+                             </select2>
+                             <div *ngIf="validate.submitted && form['Transportista'].invalid" class="invalid-feedback">
+                               El transportista es requerido.
+                             </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-3">
+                        <label class="form-label">De:</label>
+                        <div class="mb-3">
+                            <input type="date" class="form-control" [(ngModel)]="fechaInicio"
+                            formControlName="FechaInicio"
+                            [ngClass]="{ 'is-valid': validate.submitted && form['FechaInicio'].valid , 
+                                        'is-invalid': validate.submitted && form['FechaInicio'].invalid}"
+                            >
+                            <div *ngIf="validate.submitted && form['FechaInicio'].invalid" class="invalid-feedback">
+                                La fecha es requerida.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-3">
+                        <label class="form-label">Hasta:</label>
+                        <div class="mb-3">
+                            <input type="date" class="form-control" [(ngModel)]="fechaFin"
+                            formControlName="FechaFin"
+                            [ngClass]="{ 'is-valid': validate.submitted && form['FechaFin'].valid , 
+                                        'is-invalid': validate.submitted && form['FechaFin'].invalid}"
+                            >
+                            <div *ngIf="validate.submitted && form['FechaFin'].invalid" class="invalid-feedback">
+                                La fecha es requerida.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col">
+                        <br>
+                        <button class="btn btn-primary mt-1" style="margin-right: 10px;"  type="submit" (click)="validarYGuardar()">Cargar</button>
+                    </div>
+                </div> 
+
+                <div id="viajeContainer"></div>
+            </form>
+        </div>
+    </div>
+</div>
