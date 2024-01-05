@@ -7,31 +7,31 @@ CREATE DATABASE SistemaViajes
 GO
 USE SistemaViajes
 GO
-CREATE SCHEMA acce
-GO
-CREATE SCHEMA gral
-GO
-CREATE SCHEMA viaj
-GO
+--CREATE SCHEMA acce
+--GO
+--CREATE SCHEMA gral
+--GO
+--CREATE SCHEMA viaj
+--GO
 
 
 --ESQUEMA ACCESO
-CREATE TABLE acce.tbUsuarios(
-	usua_Id					INT IDENTITY(1,1),
-	usua_Nombre				NVARCHAR(100)	NOT NULL,
-	usua_Contrasena			NVARCHAR(MAX)	NOT NULL,
-	usua_Imagen				NVARCHAR(MAX)	NOT NULL,
-	usua_EsAdmin			BIT				NOT NULL,
-	role_Id					INT,
+CREATE TABLE Usuarios(
+	IdUsuario				INT IDENTITY(1,1),
+	Nombre					NVARCHAR(100)	NOT NULL,
+	Contrasena				NVARCHAR(MAX)	NOT NULL,
+	Imagen					NVARCHAR(MAX)	NOT NULL,
+	EsAdmin					BIT				NOT NULL,
+	Rol						INT,
 
-	usua_Estado				BIT NOT NULL CONSTRAINT DF_tbUsuarios_Estado DEFAULT 1,
-	usua_UsuaCreacion		INT				NOT NULL,
-	usua_FechaCreacion		DATETIME		NOT NULL,
-	usua_UsuaModificacion	INT,
-	usua_FechaModificacion	DATETIME
+	Estado					BIT NOT NULL CONSTRAINT DF_tbUsuarios_Estado DEFAULT 1,
+	UsuaCreacion			INT				NOT NULL,
+	FechaCreacion			DATETIME		NOT NULL,
+	UsuaModificacion		INT,
+	FechaModificacion		DATETIME
 
-	CONSTRAINT PK_acce_tbUsuarios_usua_Id		PRIMARY KEY(usua_Id),
-	CONSTRAINT UC_acce_tbUsuarios_usua_Nombre	UNIQUE(usua_Nombre)
+	CONSTRAINT PK_tbUsuarios_usua_Id		PRIMARY KEY(IdUsuario),
+	CONSTRAINT UC_tbUsuarios_usua_Nombre	UNIQUE(Nombre)
 );
 GO
 
